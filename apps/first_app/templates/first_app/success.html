@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login &amp; Reg | Success</title>
+</head>
+<body>
+	<h2>Welcome, {{ request.session.first_name }}!</h2>
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+	<table>
+		{% for user in users %}
+		<tr>
+			<td>{{ user.first_name }}</td>
+			<td>{{ user.last_name }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.password }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

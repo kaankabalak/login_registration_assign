@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+</head>
+<body>
+	{% if messages and request.session.isRegistered %}
+		{% for message in messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+	<h1>Registration</h1>
+	<form action='/register' method='POST'>
+	{% csrf_token %}
+		<label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+		<br><br>
+		<label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+		<br><br>
+		<label for="email">Email Address:<input type="text" name="email" id="email"></label>
+		<br><br>
+		<label for="password">Password:<input type="password" name="password" id="password"></label>
+		<br><br>
+		<label for="confirmpw">Confirm Password:<input type="password" name="confirmpw" id="confirmpw"></label>
+		<br><br>
+		<input type="submit" value="Register">
+	</form>
+	{% if messages and request.session.isLoggedIn %}
+		{% for message in messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+	<h1>Login</h1>
+	<form action='/login' method='POST'>
+	{% csrf_token %}
+		<label for="email">Email Address:<input type="text" name="email" id="email"></label>
+		<br><br>
+		<label for="password">Password:<input type="password" name="password" id="password"></label>
+		<br><br>
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>
