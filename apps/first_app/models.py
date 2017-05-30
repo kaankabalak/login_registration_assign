@@ -31,6 +31,7 @@ class UserManager(models.Manager):
 		NAME_REGEX = re.compile(r'^[a-zA-Z.+_-]+$')
 		isFormValid = True
 		message = []
+		print User.objects.filter(email=postData['email'])
 
 		if len(postData['first_name']) < 2:
 			message.append('First name cannot be less than 2 characters')
@@ -52,7 +53,7 @@ class UserManager(models.Manager):
 		elif not EMAIL_REGEX.match(postData['email']):
 			message.append('Email should be valid')
 			isFormValid = False
-		elif User.objects.count() != 0 and User.objects.get(email=postData['email']):
+		elif User.objects.count() != 0 and User.objects.filter(email=postData['email']):
 			message.append('This user has already registered')
 			isFormValid = False
 
